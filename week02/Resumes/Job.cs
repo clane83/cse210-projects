@@ -8,9 +8,10 @@ public class Job
         public int _startYear;
         public int _endYear;
 
-    public override string ToString()
+    public string Display()
     {
-        return _jobTitle;
+        return $"{_jobTitle} ({_company}) {_startYear}-{_endYear}";
+        
     }
     
 
