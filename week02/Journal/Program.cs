@@ -4,6 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
+        
+        //Create journal and add entries to journal
+        Journal journal = new Journal();
+
+        // File name for saving and loading
+        string filename = "journal.txt";
 
         string quit = "no";
 
@@ -11,16 +17,13 @@ class Program
         {
             Console.WriteLine("Please select one of the following choices (number):");
             Console.WriteLine("1. Write\n2. Display\n3. Load\n4. Save\n5. Quit");
-            int choice = int.Parse(Console.ReadLine());
+            
+            int choice;
+            if (!int.TryParse(Console.ReadLine(), out choice))
+            {
+                Console.WriteLine("Invalid input. Please enter a number");
+            }
 
-            //Create Entries into Journal
-            Entries entry1 = new Entries();
-
-            //Create journal and add entries to journal
-            Journal journal1 = new Journal();
-
-            // File name for saving and loading
-            string filename = "journal.txt";
 
             //choice 1 to write entries to list
             if (choice == 1)
@@ -32,38 +35,39 @@ class Program
                 Console.WriteLine($"Prompt: {randomPrompt}");
                 string journalEntry = Console.ReadLine();
 
+                //Create Entries into Journal
+                Entries entry = new Entries();
+            
                 //create entries
-                entry1._entrydate = DateTime.Now.ToShortDateString();
-                entry1._prompt = randomPrompt;
-                entry1._entry = journalEntry;
+                entry._entrydate = DateTime.Now.ToShortDateString();
+                entry._prompt = randomPrompt;
+                entry._entry = journalEntry;
 
                 //add entries to list
-                journal1._journal.Add(entry1);
+                journal._journal.Add(entry);
             }
             // choice 2 to display entries in journal
             else if (choice == 2)
             {
-                journal1.Display();
+                journal.Display();
             }
             //choice 3 to load journal from file
             else if (choice == 3)
             {
-                journal1.LoadFromFile(filename);
-                Journal loadedJournal = new Journal();
-                loadedJournal.LoadFromFile(filename);
-                //Console.WriteLine("\nJournal loaded from file:");
-                Console.WriteLine(loadedJournal.Display());
+                journal.LoadFromFile(filename);
+                journal.Display();
+
             }
             //choice 4 to save the journal
             else if (choice == 4)
             {   
                 // Save to file
-                journal1.SaveToFile(filename);
+                journal.SaveToFile(filename);
                 Console.WriteLine("Journal saved to file.");
             }
             else if (choice == 5)
             {
-                journal1.SaveToFile(filename);
+                journal.SaveToFile(filename);
                 Console.WriteLine("Journal saved to file.");
                 quit = "yes";
             }

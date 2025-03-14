@@ -6,16 +6,21 @@ public class Journal
 {
     public List<Entries> _journal = new List<Entries>();  //Store entries in a list
 
-    public string Display()
+    public void Display()
+{
+    if (_journal.Count == 0)
     {
-        string result = "";
-
+        Console.WriteLine("Journal is empty.");
+    }
+    else
+    {
         foreach (Entries entry in _journal)
         {
-            result += $"{entry.Display()}\n";
+            Console.WriteLine(entry.Display());
+            Console.WriteLine("----------------------------");
         }
-        return result;
     }
+}
 
     //Method to save journal to a file
     public void SaveToFile(string filename)
@@ -37,16 +42,20 @@ public class Journal
             _journal.Clear(); // Clear existing entries before loading
             string[] lines = File.ReadAllLines(filename);
 
-            for (int i = 1; i < lines.Length; i++)
+            foreach (string line in lines)
             {
-                string[] parts = lines[i].Split('|'); // Splitting saved data
-                Entries entry = new Entries
+                string[] parts = line.Split('|'); // Splitting saved data
+                if (parts.Length == 3)
                 {
-                    _entrydate = parts[0],
-                    _prompt = parts[1],
-                    _entry = parts[2]
-                };
-                _journal.Add(entry);
+                    Entries entry = new Entries
+                    {
+                        _entrydate = parts[0],
+                        _prompt = parts[1],
+                        _entry = parts[2]
+                    };
+                    _journal.Add(entry);
+                }
+                
             }
         }
         else
