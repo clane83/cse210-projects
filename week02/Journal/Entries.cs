@@ -6,9 +6,9 @@ public class Entries
 {
     public string _entry {get; set;} //Individual journal entry
     public string _entrydate {get; set;}  //Date of entry
-
+    public string _prompt;
     public string Display()
     {
-        return $"{_entrydate} - {_entry}";
+        return $"Date: {_entrydate} - Prompt: {_prompt}\n{_entry}";
     }
 }
