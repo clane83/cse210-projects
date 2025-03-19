@@ -1,59 +1,79 @@
 using System;
-using System.ComponentModel.DataAnnotations;
+
+//User and enter specific verse and verse text. The verse will split and be placed into a new list.
+//My daughter will be able to enter a new bible verse each week she has to memorize from her school.
+//she will be able to use this each week when she get the new verse.
+//the list will be used to populated the reference variables
+//hidding words will also hide only words not hidden already
+//Randomly chooses how many words to hide between 2 and 4 words
 
 class Program
 {
     static void Main(string[] args)
-    {
-        Console.WriteLine("What is your favorite scripture? (e.g., John 3:16)");
-        string favoriteVerse = Console.ReadLine();
-        string[] verseParts = favoriteVerse.Split(":");
-        if (verseParts.Length < 2)
+    {   
+        string verseText = "";
+        Console.Clear();
+        Console.WriteLine("Enter the verse you want to memorize (i.e. John 3:16) or press enter to use Proverbs 3:5–6");
+        string verse = Console.ReadLine();
+        if (verse == "")
         {
-            Console.WriteLine("Incorrect entry.  Please enter in 'Book Chapter:Verse' format.");
-            return;
+            verse = "Proverbs 3:5–6";
+            verseText = "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.";
+
+        } else {
+            Console.WriteLine("Enter the verse text");
+            verseText = Console.ReadLine();
         }
+        //replace the :, - and spaces with commas in the verse string entered by user
+        verse = verse.Replace(":", " ");
+        verse = verse.Replace("-", " ");
+        verse = verse.Replace(" ", ",");
 
-        string bookChapter = verseParts[0];
-        string verse = verseParts[1];
-
-        string[] bookChapterParts = verseParts[0].Split(" ");
-        if (bookChapterParts.Length < 2)
+        List<string> verseList = new List<string>();
+        //split the string to a list at the commas
+        verseList = verse.Split(",").Select(verseList => new string(verseList)).ToList();
+        if (verseList.Count < 3 || verseList.Count > 4)
         {
-            Console.WriteLine("Incorrect entry.  Please enter in 'Book Chapter:Verse' format.");
-            return;
+            Console.WriteLine("Please enter a valid verse.");
         }
+        Reference reference = new Reference(verseList);
+        // Reference reference = new Reference("John", "3", "16");
+        // string verseText = "For God so loved the world that he gave his only begotten Son.";
+        Scripture scripture = new Scripture(reference, verseText);
+        int verstTextCount = verseText.Split(" ").Length;
 
-        string book = bookChapterParts[0];
-        string chapter = bookChapterParts[1];
+        //clear the console and display the verse and words
+        Console.Clear();
+        Console.WriteLine(scripture.GetDisplayText());
+        string keepHiding = "";
+        //Keep looping until keepHiding = quit
+        while (keepHiding != "quit")
+        {
+           //IsCompletelyHidden is a method that will check to see if all words are hidden.  
+            if (scripture.IsCompletelyHidden() == true)
+            {
+                Console.WriteLine("You have hidden all the words!");
+                keepHiding = "quit";
+            } else {
+                Console.WriteLine("Type 'quit' to exit or press any key to continue.");
+                keepHiding = Console.ReadLine();
 
-        Console.WriteLine("What is does the verse say? ");
-        string text = Console.ReadLine();
+            //Randomly choose the amount of words to hide. 2 to 4 words at a time
+            Random random = new Random();
+            int numberOfWordsToHide = random.Next(2, 4);
+            for (int i = 0; i < numberOfWordsToHide; i++)
+            {
+                scripture.HideRandomWords();
+            }
+                
+                
+                // scripture.HideRandomWords();
+                Console.Clear();
 
-
-
-        Reference reference = new Reference(book, chapter, verse);
-        Console.WriteLine(reference.GetDisplayText()); // Display the formatted reference
+                Console.WriteLine(scripture.GetDisplayText());
+            }
+            
+        }
         
-        // bool result; 
-  
-        // // checking if G is a 
-        // // Unicode letter or not 
-        // char ch1 = 'G'; 
-        // result = Char.IsLetter(ch1); 
-        // Console.WriteLine(result); 
-  
-        // // checking if '6' is a 
-        // // Unicode letter or not 
-        // char ch2 = '6'; 
-        // result = Char.IsLetter(ch2); 
-        // Console.WriteLine(result);
-
-        // char ch3 = ','; 
-        // result = Char.IsLetter(ch3); 
-        // Console.WriteLine(result);
-
-        // Console.Clear();
-       
     }
 }

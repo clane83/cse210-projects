@@ -2,22 +2,30 @@ using System;
 
 public class Word
 {
-    private List<Hidden> _hidden = new List<Hidden>();
-    private List<Show> _show = new List<Show>();
+    private string _text;
+    private bool _isHidden;
 
-    public void Hide()
+    public Word(string text)
     {
-
+        _text = text;
+        
     }
-
     public void Show()
     {
+        _isHidden = false;
+    }
+    public void Hide()
+    {
+        _isHidden = true;
 
     }
-
     public bool IsHidden()
     {
-
+        return _isHidden;
+    }
+    public string GetDisplayText()
+    {
+        return _isHidden ? new string('_', _text.Length) : _text;
     }
 
 }
