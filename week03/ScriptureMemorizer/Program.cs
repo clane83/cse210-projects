@@ -46,17 +46,13 @@ class Program
         Console.Clear();
         Console.WriteLine(scripture.GetDisplayText());
         string keepHiding = "";
+        Console.WriteLine("Type 'quit' to exit or press any key to continue.");
+        keepHiding = Console.ReadLine();
         //Keep looping until keepHiding = quit
         while (keepHiding != "quit")
         {
            //IsCompletelyHidden is a method that will check to see if all words are hidden.  
-            if (scripture.IsCompletelyHidden() == true)
-            {
-                Console.WriteLine("You have hidden all the words!");
-                keepHiding = "quit";
-            } else {
-                Console.WriteLine("Type 'quit' to exit or press any key to continue.");
-                keepHiding = Console.ReadLine();
+            
 
             //Randomly choose the amount of words to hide. 2 to 4 words at a time
             Random random = new Random();
@@ -64,13 +60,21 @@ class Program
             for (int i = 0; i < numberOfWordsToHide; i++)
             {
                 scripture.HideRandomWords();
+            
             }
                 
                 
                 // scripture.HideRandomWords();
-                Console.Clear();
+            Console.Clear();
 
-                Console.WriteLine(scripture.GetDisplayText());
+            Console.WriteLine(scripture.GetDisplayText());
+            if (scripture.IsCompletelyHidden() == true)
+            {
+                Console.WriteLine("You have hidden all the words!");
+                keepHiding = "quit";
+            } else {
+                Console.WriteLine("Type 'quit' to exit or press any key to continue.");
+                keepHiding = Console.ReadLine();
             }
             
         }

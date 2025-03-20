@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Scripture
 {
@@ -22,10 +24,9 @@ public class Scripture
         //hide random words
         int numberToHide = -1;
         bool letters = true;
-        //loop through words to hide until one is found that is not hidden
-        while (letters)
+        int attempts = 0;
+        while (attempts < _words.Count * 2 || letters) 
         {
-            //If the word is hidden loop we continue to find a word that is not hidden
             Random random = new Random();
             numberToHide = random.Next(0, _words.Count);
             Word word = _words[numberToHide];
@@ -37,8 +38,25 @@ public class Scripture
             } else {
                 letters = false;
             }
-            
+            attempts++;
         }
+        //loop through words to hide until one is found that is not hidden
+        // while (letters)
+        // {
+        //     //If the word is hidden loop we continue to find a word that is not hidden
+        //     Random random = new Random();
+        //     numberToHide = random.Next(0, _words.Count);
+        //     Word word = _words[numberToHide];
+        //     //word GetDisplayTaxt shows the word, if it shows "_" as the first character the word is hidden
+        //     //If hidden letter is changed to false and stops the loop
+        //     if(word.GetDisplayText().StartsWith("_"))
+        //     {
+        //         letters = true;
+        //     } else {
+        //         letters = false;
+        //     }
+            
+        // }
         
         
         if (_words[numberToHide].IsHidden() == false)
