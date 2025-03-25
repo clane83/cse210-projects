@@ -17,7 +17,6 @@ public class Order{
   private List<Product> _productsList = new List<Product>();
   private Customer _customer;
   private double _orderSubTotal = 0.00;
-  private Product _product;
   private double _oderTotal = 0.00;
   private int _shippingTotal = 0;
 
