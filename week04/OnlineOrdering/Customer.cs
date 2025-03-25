@@ -16,6 +16,10 @@ public class Customer{
         _address = address;
     }
 
+    public bool IsInUSA(){
+        return _address.IsInUSA();
+    }
+
     public string DisplayCustomer(){
         return $"{_name}\n{_address.GetAddress()}";
     }
