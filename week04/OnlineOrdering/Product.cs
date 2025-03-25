@@ -11,6 +11,21 @@ public class Product{
     private string _productName = "";
     private int _productId = 0;
     private double _price = 0.00;
-    private int _quantity;
-    
+    private int _quantity = 0;
+    private double _totalPrice;
+
+    public Product(string productName, int id, double price, int quantity){
+        
+        _productName = productName;
+        _productId = id;
+        _price = price;
+        _quantity = quantity;
+
+    }
+
+    public double GetTotalPrice(){
+        _totalPrice = _totalPrice + (_price * _quantity);
+        return _totalPrice;
+    }
+
 }
