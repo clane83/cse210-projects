@@ -8,5 +8,16 @@ public class Customer{
     USA or not. (Hint this should call a method on the address to find this.)
     */
 
+    private string _name;
+    private Address _address;
+
+    public Customer(string name, Address address){
+        _name = name;
+        _address = address;
+    }
+
+    public string DisplayCustomer(){
+        return $"{_name}\n{_address.GetAddress()}";
+    }
     
 }
