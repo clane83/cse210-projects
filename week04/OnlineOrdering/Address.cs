@@ -17,15 +17,16 @@ public class Address{
     public Address(string streetAddress, string city, string stateProvince, string country){
         _streetAddress = streetAddress;
         _city = city;
-        _stateProvince = stateProvince;
-        _country = country;
+        _stateProvince = stateProvince.ToUpper();
+        _country = country.ToUpper();
     }
 
-    public bool IsInUDA(){
+    public bool IsInUSA(){
         return _country == "USA";
     }
 
-    public GetAddress(){
+    public string GetAddress()
+    {
         return $"{_streetAddress}\n{_city}, {_stateProvince}\n{_country}";
     }
 }
