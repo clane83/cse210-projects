@@ -7,16 +7,17 @@ public class Order{
     of the order. Can return a string for the packing label. Can return a string 
     for the shipping label.
     The total price is calculated as the sum of the total cost of each product plus 
-    a one-time shipping cost.
+    a one-time shipping cost. - done
     This company is based in the USA. If the customer lives in the USA, then the 
     shipping cost is $5. If the customer does not live in the USA, then the shipping 
-    cost is $35.
+    cost is $35. -done
     A packing label should list the name and product id of each product in the order.
     A shipping label should list the name and address of the customer*/
 
   private List<Product> _productsList = new List<Product>();
   private Customer _customer;
   private double _orderSubTotal = 0.00;
+  private Product _product;
   private double _oderTotal = 0.00;
   private int _shippingTotal = 0;
 
@@ -45,6 +46,20 @@ public class Order{
   public double GetOrderTotal(){
     _oderTotal = _orderSubTotal + _shippingTotal;
     return _oderTotal;
+  }
+
+  public string GetShippingLabel(){
+    return $"Shipping Label:\n{_customer.DisplayCustomer()}";
+  }
+
+  public string GetPackingLabel(){
+    string packingLabel = "Packing Label:\n";
+        foreach (Product product in _productsList)
+        {
+            packingLabel += $"- {product.GetProductText()}\n";
+        }
+        return packingLabel;
+
   }
 
 

@@ -27,6 +27,6 @@ public class Address{
 
     public string GetAddress()
     {
-        return $"{_streetAddress}\n{_city}, {_stateProvince}\n{_country}";
+        return $"{_streetAddress}\n{_city}, {_stateProvince}";
     }
 }

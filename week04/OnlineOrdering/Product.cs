@@ -29,7 +29,7 @@ public class Product{
     }
 
     public string GetProductText(){
-        return $"{_productName} {_productId} {_price} {_quantity}";
+        return $"{_productName} - {_productId} - ordered:{_quantity}";
     }
 
 }
