@@ -14,18 +14,32 @@ public class Order{
     A packing label should list the name and product id of each product in the order.
     A shipping label should list the name and address of the customer*/
 
-  private List<Product> _products= new List<Product>();
+  private List<Product> _productsList = new List<Product>();
   private Customer _customer;
-
   private double _orderTotal = 0.00;
-  private int _shippingTotal = 0.00;
+  private int _shippingTotal = 0;
 
-  public Order(Customer customer, string text){
-    _products = text.Split(" ").Select(product => new Word(product)).ToList();
+  public Order(Customer customer, params Product[] products){
+    _productsList = new List<Product>(products);
     _customer = customer;
   }
 
-  
+  public int GetShippingCost(){
+    if (_customer.IsInUSA())
+    {
+      _shippingTotal = 5;
+    } else {
+      _shippingTotal = 35;
+    }
+    return _shippingTotal;
+  }
+
+  public double GetOrderSubTotal(){
+    foreach (Product product in _productsList){
+      _orderTotal += product.GetProductTotal();
+    }
+    return _orderTotal;
+  }
 
 
 }

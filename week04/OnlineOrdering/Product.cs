@@ -23,9 +23,13 @@ public class Product{
 
     }
 
-    public double GetTotalPrice(){
-        _totalPrice = _totalPrice + (_price * _quantity);
+    public double GetProductTotal(){
+        _totalPrice = _price * _quantity;
         return _totalPrice;
+    }
+
+    public string GetProductText(){
+        return $"{_productName} {_productId} {_price} {_quantity}";
     }
 
 }

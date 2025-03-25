@@ -11,8 +11,10 @@ class Program
 
         Product product1 = new Product("Lipstick", 123, 15.99, 1);
         Product product2 = new Product("eyeshadow", 465, 5.99, 2);
-        System.Console.WriteLine(product1.GetTotalPrice());
-        System.Console.WriteLine(product2.GetTotalPrice());
+        Order order1 = new Order(customer1, product1, product2);
+        System.Console.WriteLine(product1.GetProductTotal());
+        System.Console.WriteLine(product2.GetProductTotal());
+        System.Console.WriteLine(order1.GetOrderSubTotal());
 
 
     }
