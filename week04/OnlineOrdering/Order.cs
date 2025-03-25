@@ -16,7 +16,8 @@ public class Order{
 
   private List<Product> _productsList = new List<Product>();
   private Customer _customer;
-  private double _orderTotal = 0.00;
+  private double _orderSubTotal = 0.00;
+  private double _oderTotal = 0.00;
   private int _shippingTotal = 0;
 
   public Order(Customer customer, params Product[] products){
@@ -36,9 +37,14 @@ public class Order{
 
   public double GetOrderSubTotal(){
     foreach (Product product in _productsList){
-      _orderTotal += product.GetProductTotal();
+      _orderSubTotal += product.GetProductTotal();
     }
-    return _orderTotal;
+    return _orderSubTotal;
+  }
+
+  public double GetOrderTotal(){
+    _oderTotal = _orderSubTotal + _shippingTotal;
+    return _oderTotal;
   }
 
 

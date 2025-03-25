@@ -14,7 +14,9 @@ class Program
         Order order1 = new Order(customer1, product1, product2);
         System.Console.WriteLine(product1.GetProductTotal());
         System.Console.WriteLine(product2.GetProductTotal());
-        System.Console.WriteLine(order1.GetOrderSubTotal());
+        System.Console.WriteLine($"Your subtotal is: ${order1.GetOrderSubTotal()}");
+        System.Console.WriteLine($"Your shipping total is: ${order1.GetShippingCost()}");
+        System.Console.WriteLine($"Your total is: ${order1.GetOrderTotal()}");
 
 
     }
