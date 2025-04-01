@@ -29,7 +29,7 @@ public class Reflecting : Mindfulness
             "What could you learn from this experience that applies to other situations?",
             "What did you learn about yourself through this experience?",
             "How can you keep this experience in mind in the future?"
-        }
+        };
     }
     public void StartReflectingActivity()
     {
@@ -48,4 +48,10 @@ public class Reflecting : Mindfulness
         int index = random.Next(_prompts.Count);
         return _prompts[index];
     }
+
+    public void DisplayQuestions(int index)
+    {
+       Console.WriteLine(_reflectQuestion[index]);
+    }
+
 }

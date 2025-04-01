@@ -14,15 +14,16 @@ public class Mindfulness{
         //Breathe countdown
         if (typeOfCountDown == "count") 
         {
-            Console.WriteLine("Countdown starting...");
+            // Console.WriteLine("Countdown starting...");
+            Breathing breathingInstance = new Breathing(seconds, typeOfCountDown);
             for (int i = seconds; i > 0; i--)
             {
                 if (i == 1 || i % 10 == 0)
                 {
-                    System.Console.WriteLine("Breathe in....");
+                    breathingInstance.DisplayBreatheIn();
                 } else if (i % 5 == 0)
                 {
-                    System.Console.WriteLine("Breathe out...");
+                    breathingInstance.DisplayBreatheOut();
                 }
 
                 Console.WriteLine(i);
@@ -35,9 +36,26 @@ public class Mindfulness{
             string[] spinner = {"|", "/", "-", "\\"};
             int spinnerIndex = 0;
 
-            Console.WriteLine("Spinner in progress...");
-            for (int i = 0; i < seconds ; i++)
+            int questionIndex = 0;
+            int questionPause = seconds / 9;
+            if (questionPause < 5)
             {
+                questionPause = 5;
+            }
+            System.Console.WriteLine(questionPause);
+            Reflecting reflectingInstance = new Reflecting(seconds, typeOfCountDown);
+            // Console.WriteLine("Spinner in progress...");
+            for (int i = seconds; i > 0; i--)
+            {   
+                if (i % questionPause == 0)
+                {
+                    reflectingInstance.DisplayQuestions(questionIndex);
+                    questionIndex += 1;
+                    if (questionIndex == 8)
+                    {
+                        break;
+                    }
+                }
 
                 Console.WriteLine(spinner[spinnerIndex] + "\r");
                 spinnerIndex = (spinnerIndex + 1) % spinner.Length;
@@ -54,6 +72,7 @@ public class Mindfulness{
         
         DisplayEndingMessage(activity);
     }
+
 
     public string DisplayStartingMessage()
     {
