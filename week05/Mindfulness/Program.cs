@@ -17,7 +17,7 @@ class Program
         if (option == 1)
         {
             Breathing breath1 = new Breathing(duration, "count");
-            breath1.StartBreathingActivity();
+            breath1.StartBreathingActivity(option);
         } else if (option == 2)
         {
             Reflecting reflect1 = new Reflecting(duration, "spinner");
@@ -28,7 +28,7 @@ class Program
             list1.StartListingActivity();
         } else if (option == 4)
         {
-            Console.WriteLine("You have chosen Quit!\nHave a nice day!")
+            Console.WriteLine("You have chosen Quit!\nHave a nice day!");
         }else
         {
             Console.WriteLine("Please make a valid option");

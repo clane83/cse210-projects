@@ -12,7 +12,7 @@ public class Listing : Mindfulness
     }
     public void StartListingActivity()
     {
-        StartCountdown(_duration, _typeOfCountDown);
+        StartCountdown(_duration, _typeOfCountDown, "listing");
     }
 
 }

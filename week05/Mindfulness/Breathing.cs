@@ -10,9 +10,17 @@ public class Breathing : Mindfulness
         _duration = seconds;
         _typeOfCountDown = typeOfCountDown;
     }
-    public void StartBreathingActivity()
+    public void StartBreathingActivity(int activity)
     {
-        StartCountdown(_duration, _typeOfCountDown);
+        DisplayBreatheMessage();
+        StartCountdown(_duration, _typeOfCountDown, "breathing");
+        
+    }
+
+    public void DisplayBreatheMessage()
+    {
+        
+        Console.WriteLine($"{DisplayStartingMessage()} relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
     }
 
 }

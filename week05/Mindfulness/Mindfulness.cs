@@ -9,17 +9,28 @@ public class Mindfulness{
         _duration = duration;
         _typeOfCountDown = typeOfCountDown;
     }
-    public void StartCountdown(int seconds, string typeOfCountDown)
+    public void StartCountdown(int seconds, string typeOfCountDown, string activity)
     {
+        //Breathe countdown
         if (typeOfCountDown == "count") 
         {
             Console.WriteLine("Countdown starting...");
             for (int i = seconds; i > 0; i--)
             {
+                if (i == 1 || i % 10 == 0)
+                {
+                    System.Console.WriteLine("Breathe in....");
+                } else if (i % 5 == 0)
+                {
+                    System.Console.WriteLine("Breathe out...");
+                }
+
                 Console.WriteLine(i);
                 Thread.Sleep(1000);
             }
-        } else if (typeOfCountDown == "spinner")
+        } 
+        //Reflect countdown
+        else if (typeOfCountDown == "spinner")
         {
             string[] spinner = {"|", "/", "-", "\\"};
             int spinnerIndex = 0;
@@ -27,22 +38,32 @@ public class Mindfulness{
             Console.WriteLine("Spinner in progress...");
             for (int i = 0; i < seconds ; i++)
             {
+
                 Console.WriteLine(spinner[spinnerIndex] + "\r");
                 spinnerIndex = (spinnerIndex + 1) % spinner.Length;
                 Thread.Sleep(1000);
             }
-        } else {
+        } 
+        //List countdown
+        else {
             for (int i = seconds; i > 0; i--)
             {
                 Thread.Sleep(1000);
             }
         }
         
-        Console.WriteLine("Countdown complete!");
+        DisplayEndingMessage(activity);
     }
 
     public string DisplayStartingMessage()
     {
-        Console.WriteLine("This activity will help you ");
+        string message = "This activity will help you";
+        return message;
+    }
+
+    public void DisplayEndingMessage(string activity)
+    {
+        System.Console.WriteLine($"I hope this {activity} acivity has helped you.\nHave a nice day.");
+        
     }
 }
