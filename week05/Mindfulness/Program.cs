@@ -1,5 +1,10 @@
 using System;
 
+//The reflecting timeframe between question prompts will automatically adjust 
+//based on the inital timeframe user enters
+//If invalid entry is entered from Menu Options, program will tell user to 
+//enter a valid option
+
 class Program
 {
     static void Main(string[] args)

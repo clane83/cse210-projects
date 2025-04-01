@@ -42,7 +42,7 @@ public class Mindfulness{
             {
                 questionPause = 5;
             }
-            System.Console.WriteLine(questionPause);
+            Console.Write(questionPause);
             Reflecting reflectingInstance = new Reflecting(seconds, typeOfCountDown);
             // Console.WriteLine("Spinner in progress...");
             for (int i = seconds; i > 0; i--)
@@ -57,7 +57,7 @@ public class Mindfulness{
                     }
                 }
 
-                Console.WriteLine(spinner[spinnerIndex] + "\r");
+                Console.Write(spinner[spinnerIndex] + "\r");
                 spinnerIndex = (spinnerIndex + 1) % spinner.Length;
                 Thread.Sleep(1000);
             }
