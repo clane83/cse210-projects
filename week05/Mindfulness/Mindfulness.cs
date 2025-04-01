@@ -64,10 +64,22 @@ public class Mindfulness{
         } 
         //List countdown
         else {
-            for (int i = seconds; i > 0; i--)
+            Listing listingInstance = new Listing(seconds, typeOfCountDown);
+            DateTime endTime = DateTime.Now.AddSeconds(seconds);
+            System.Console.WriteLine("Start listing as many items as you can.  Press Enter after each item.");
+            int itemCount = 0;
+            for (int i = 5; i > 0; i--)
             {
+                Console.WriteLine(i);
                 Thread.Sleep(1000);
             }
+            while (DateTime.Now < endTime)
+            {
+                Console.WriteLine("Enter an item: ");
+                string item = Console.ReadLine();
+                itemCount++;
+            }
+            listingInstance.DisplayListCount(itemCount);
         }
         
         DisplayEndingMessage(activity);

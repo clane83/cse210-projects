@@ -4,14 +4,14 @@ public class Reflecting : Mindfulness
 {
     private int _duration = 0;
     private string _typeOfCountDown;
-    private List<string> _prompts;
+    private List<string> _reflectingPrompts;
     private List<string> _reflectQuestion;
 
     public Reflecting(int seconds, string typeOfCountDown) : base(seconds, typeOfCountDown)
     {
         _duration = seconds;
         _typeOfCountDown = typeOfCountDown;
-        _prompts = new List<string>
+        _reflectingPrompts = new List<string>
         {
             "Think of a time when you stood up for someone else.",
             "Think of a time when you did something really difficult.",
@@ -45,8 +45,8 @@ public class Reflecting : Mindfulness
     public string RandomPrompt()
     {
         Random random = new Random();
-        int index = random.Next(_prompts.Count);
-        return _prompts[index];
+        int index = random.Next(_reflectingPrompts.Count);
+        return _reflectingPrompts[index];
     }
 
     public void DisplayQuestions(int index)
