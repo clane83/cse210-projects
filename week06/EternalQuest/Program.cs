@@ -8,17 +8,21 @@ class Program
         string goalName = "";
         string goalDescription = "";
         string goalPoints = "";
+        string goalTarget = "";
+        string goalBonus = "";
         bool goalComplete = false;
+        int answer = 0;
+        int goalAnswer = 0;
     
         bool continueProgram = true;
         while (continueProgram)
         {
-            GoalManager startMenu = new GoalManager();
+            GoalManager goalManager = new GoalManager();
 
             // Call the Start() method and print its output
-            Console.WriteLine(startMenu.Start());
+            Console.WriteLine(goalManager.Start());
             Console.WriteLine("Select a choice from the menu: ");
-            int answer = int.Parse(Console.ReadLine());
+            answer = int.Parse(Console.ReadLine());
 
             if (answer == 6)
             {
@@ -26,16 +30,49 @@ class Program
                 continueProgram = false;
             } else if  (answer == 1)
             {
-                //create simple goal
-                Console.WriteLine("What is your simple goal? ");
+
+                Console.WriteLine(goalManager.GoalType());
+                goalAnswer = int.Parse(Console.ReadLine());
+                
+                //get goal info for simple and eternal goals
+                Console.WriteLine("What is your goal? ");
                 goalName = Console.ReadLine();
                 Console.WriteLine("What is a short description of it?");
                 goalDescription = Console.ReadLine();
                 Console.WriteLine("How many points is it worth?");
                 goalPoints = Console.ReadLine();
-                SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints, goalComplete);
-                Console.WriteLine(simpleGoal.GetDetailsString());
-            } 
+                if (goalAnswer == 2){
+                    Console.WriteLine("How many times to you want to complete this goal?");
+                    goalTarget = Console.ReadLine();
+                    Console.WriteLine("What are the bonus points for completing the goal?");
+                    goalBonus = Console.ReadLine();
+
+            //create checklist goal
+                    ChecklistGoal checklistgoal = new ChecklistGoal(goalName, goalDescription, "0", goalTarget, goalBonus, goalPoints);
+                    goalManager.AddGoal(checklistgoal);
+                } else if (goalAnswer == 1){
+            //create simple goal
+                    SimpleGoal simplegoal = new SimpleGoal(goalName, goalDescription, goalPoints, goalComplete);
+                    goalManager.AddGoal(simplegoal);
+                } else if(goalAnswer == 3){
+            //create eternal goal
+                    EternalGoal eternalgoal = new EternalGoal(goalName, goalDescription, goalPoints);
+                } else {
+                    Console.WriteLine("Please enter a valid goal type");
+                }
+                
+
+                // SimpleGoal simpleGoal = new SimpleGoal(goalName, goalDescription, goalPoints, goalComplete);
+                // Console.WriteLine(simpleGoal.GetDetailsString());
+            } else if  (answer == 2)
+            {
+                Console.WriteLine(goalManager.GetGoals());
+            } else if  (answer == 3)
+            {
+                Console.WriteLine("Enter the file path to save the goals:");
+                string filePath = Console.ReadLine();
+                goalManager.SaveGoals(filePath);
+            }
         }
 
         
@@ -43,16 +80,6 @@ class Program
 
 
 
-        //create simple goal
-        // SimpleGoal simpleGoal1 = new SimpleGoal("run a marathon", "ran 26.2 miles", "1000", true);
-        // System.Console.WriteLine(simpleGoal1.GetDetailsString());
 
-        //create eternal goal
-        EternalGoal eternal1 = new EternalGoal("Read scriptures", "Read the Book of Mormon for 10 minutes", "50");
-        Console.WriteLine(eternal1.GetDetailsString());
-
-        //create checklist goal
-        ChecklistGoal checklist1 = new ChecklistGoal("Teach in Primary", "Teach in primary 3 times this month", "0", "3", "100", "50");
-        Console.WriteLine(checklist1.GetDetailsString());
     }
 }
