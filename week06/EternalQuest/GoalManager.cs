@@ -36,8 +36,9 @@ public class GoalManager {
         {
             foreach (Goal goal in _goals)
             {
-                // Assuming each Goal class has a ToString() method or similar to serialize its data
-                writer.WriteLine(goal.ToString());
+                
+                writer.WriteLine(goal.GetStringRepresentation());
+                Console.WriteLine(goal);
             }
         }
         // Console.WriteLine("Goals have been saved successfully!");

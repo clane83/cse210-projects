@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        GoalManager goalManager = new GoalManager();
 
         string goalName = "";
         string goalDescription = "";
@@ -17,7 +18,7 @@ class Program
         bool continueProgram = true;
         while (continueProgram)
         {
-            GoalManager goalManager = new GoalManager();
+            
 
             // Call the Start() method and print its output
             Console.WriteLine(goalManager.Start());

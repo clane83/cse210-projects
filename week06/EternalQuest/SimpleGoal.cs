@@ -21,6 +21,6 @@ public class SimpleGoal : Goal {
     }
 
     public override string GetStringRepresentation() {
-        return "-1";
+        return $"{RecordEvent()}|{GetShortName()}|{GetDescription()}|points: {GetPoints()}";
     }
 }

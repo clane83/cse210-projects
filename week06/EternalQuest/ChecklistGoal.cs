@@ -33,7 +33,7 @@ public class ChecklistGoal : Goal {
     }
 
     public override string GetStringRepresentation() {
-        return "-1";
+        return $"{RecordEvent()}|{GetShortName()}|{GetDescription()}|points: {GetPoints()}|{_amountCompleted} out of {_target} completed| bonus points:{base.GetPoints()}";
     }
 
 }
