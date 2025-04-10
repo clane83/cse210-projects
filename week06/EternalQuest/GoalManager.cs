@@ -4,6 +4,7 @@ using System.IO;
 public class GoalManager {
     private int _score;
     private List<Goal> _goals = new List<Goal>();
+    
 
 
 
@@ -34,6 +35,7 @@ public class GoalManager {
     {
         using (StreamWriter writer = new StreamWriter(filePath))
         {
+            writer.WriteLine(_score);
             foreach (Goal goal in _goals)
             {
                 
@@ -46,9 +48,55 @@ public class GoalManager {
 
 // LoadGoals - Loads the list of goals from a file.
 
-    // public int SetScore(int score) {
-    //     _score = score;
-    // }
+    public void LoadGoals(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("File not found.");
+            return;
+        }
+
+        string[] lines = File.ReadAllLines(filePath);
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split('|');
+            string goalType = parts[0];
+
+            if (goalType == "SimpleGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                string points = parts[3];
+                bool isComplete = bool.Parse(parts[4]);
+                SimpleGoal sg = new SimpleGoal(name, desc, points, isComplete);
+                _goals.Add(sg);
+            }
+            else if (goalType == "ChecklistGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                string points = parts[3];
+                string target = parts[4];
+                string bonus = parts[5];
+                string completed = parts[6]; // figure out error at this point
+                ChecklistGoal cg = new ChecklistGoal(name, desc, completed, target, bonus, points);
+                _goals.Add(cg);
+            }
+            else if (goalType == "EternalGoal")
+            {
+                string name = parts[1];
+                string desc = parts[2];
+                string points = parts[3];
+                EternalGoal eg = new EternalGoal(name, desc, points);
+                _goals.Add(eg);
+            }
+        }
+
+        // Console.WriteLine("Goals loaded successfully.");
+    }
+
+
+
     public string GetGoals()
 {
     if (_goals.Count == 0)

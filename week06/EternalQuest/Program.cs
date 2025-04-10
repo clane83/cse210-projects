@@ -14,6 +14,7 @@ class Program
         bool goalComplete = false;
         int answer = 0;
         int goalAnswer = 0;
+        string filePath = "";
     
         bool continueProgram = true;
         while (continueProgram)
@@ -58,6 +59,7 @@ class Program
                 } else if(goalAnswer == 3){
             //create eternal goal
                     EternalGoal eternalgoal = new EternalGoal(goalName, goalDescription, goalPoints);
+                    goalManager.AddGoal(eternalgoal);
                 } else {
                     Console.WriteLine("Please enter a valid goal type");
                 }
@@ -71,8 +73,13 @@ class Program
             } else if  (answer == 3)
             {
                 Console.WriteLine("Enter the file path to save the goals:");
-                string filePath = Console.ReadLine();
+                filePath = Console.ReadLine();
                 goalManager.SaveGoals(filePath);
+            } else if (answer == 4)
+            {
+                Console.WriteLine("Enter the file path to load the goals from:");
+                filePath = Console.ReadLine();
+                goalManager.LoadGoals(filePath);
             }
         }
 

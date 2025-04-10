@@ -12,7 +12,7 @@ public class ChecklistGoal : Goal {
     }
 
     public override string GetDetailsString() {
-        return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {_amountCompleted} out of {_target} completed / {base.GetPoints()}";
+        return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {base.GetPoints()} / {_amountCompleted} out of {_target} completed / {_bonus}";
     }
 
     public override bool IsComplete() {
@@ -33,7 +33,7 @@ public class ChecklistGoal : Goal {
     }
 
     public override string GetStringRepresentation() {
-        return $"{RecordEvent()}|{GetShortName()}|{GetDescription()}|points: {GetPoints()}|{_amountCompleted} out of {_target} completed| bonus points:{base.GetPoints()}";
+        return $"ChecklistGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{_amountCompleted} out of {_target} completed|{_bonus}";
     }
 
 }

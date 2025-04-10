@@ -1,1 +1,4 @@
-[ ]|run a marathon|run 26.2 miles|points: 100
+0
+ChecklistGoal|lkjalkj|aldkjf oiua fjakd jflakdjf ladf lkj |50|0 out of 7 completed|900
+EternalGoal|lakdjf|lakdj faiduf alk dj|600|False
+SimpleGoal|lakdjf|lakdjf lakjd |50

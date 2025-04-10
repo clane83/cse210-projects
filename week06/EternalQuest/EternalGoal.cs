@@ -13,7 +13,11 @@ public class EternalGoal : Goal{
        return "[ ]";
     }
 
+    public override string GetDetailsString() {
+        return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {base.GetPoints()}";
+    }
+
     public override string GetStringRepresentation() {
-        return $"{RecordEvent()}|{GetShortName()}|{GetDescription()}|points: {GetPoints()}";
+        return $"EternalGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{IsComplete()}";
     }
 }
