@@ -26,7 +26,7 @@ class Program
             Console.WriteLine("Select a choice from the menu: ");
             answer = int.Parse(Console.ReadLine());
 
-            if (answer == 6)
+            if (answer == 7)
             {
                 Console.WriteLine("Goodbye!");
                 continueProgram = false;
@@ -85,7 +85,11 @@ class Program
                 Console.WriteLine("Which goal would you like to mark completed? ");
                 int goalNumber = int.Parse(Console.ReadLine());
                 goalManager.RecordEvent(goalNumber);
-            } else {
+            } else if (answer == 6){
+                Console.WriteLine(goalManager.GetScore());
+            }
+            
+            else {
                 Console.WriteLine("Please pick a valid option. 1 - 6");
             }
 

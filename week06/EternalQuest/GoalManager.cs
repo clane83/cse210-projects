@@ -10,7 +10,7 @@ public class GoalManager {
 
 // Start - This is the "main" function for this class. It is called by Program.cs, and then runs the menu loop.
     public string Start(){
-        return "Menu Options: \n  1. Create New Goal\n  2. List Goals\n  3. Save Goals\n  4. Load Goals\n  5. Record Event\n  6. Quit";
+        return "Menu Options: \n  1. Create New Goal\n  2. List Goals\n  3. Save Goals\n  4. Load Goals\n  5. Record Event\n  6. Show Score\n  7. Quit";
          
     }
 
@@ -21,6 +21,9 @@ public class GoalManager {
 
 
 // DisplayPlayerInfo - Displays the players current score.
+    public int GetScore(){
+        return _score;
+    }
 // ListGoalNames - Lists the names of each of the goals.
 // ListGoalDetails - Lists the details of each goal (including the checkbox of whether it is complete).
 // CreateGoal - Asks the user for the information about a new goal. Then, creates the goal and adds it to the list.
@@ -54,7 +57,13 @@ public class GoalManager {
             _score += checklistGoal.GetPoints();
             checklistGoal.SetAmountCompleted(1);
             Console.WriteLine($"{checklistGoal.GetShortName()} was updated.  +{checklistGoal.GetPoints()} points.");
+            if (checklistGoal.GetAmountCompleted() == checklistGoal.GetTarget())
+            {
+                Console.WriteLine($"You earned a {checklistGoal.GetBonus()} point bonus!!");
+                _score += checklistGoal.GetBonus();
+            }
             
+
         }else
         {
             Console.WriteLine("That goal type doesn't get marked complete like a Simple Goal.");
@@ -96,6 +105,9 @@ public class GoalManager {
         }
 
         string[] lines = File.ReadAllLines(filePath);
+
+        _score = int.Parse(lines[0]);
+
         foreach (string line in lines)
         {
             string[] parts = line.Split('|');
