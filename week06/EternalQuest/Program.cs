@@ -80,7 +80,15 @@ class Program
                 Console.WriteLine("Enter the file path to load the goals from:");
                 filePath = Console.ReadLine();
                 goalManager.LoadGoals(filePath);
+            } else if (answer == 5){
+                Console.WriteLine(goalManager.GetGoals());
+                Console.WriteLine("Which goal would you like to mark completed? ");
+                int goalNumber = int.Parse(Console.ReadLine());
+                goalManager.RecordEvent(goalNumber);
+            } else {
+                Console.WriteLine("Please pick a valid option. 1 - 6");
             }
+
         }
 
         

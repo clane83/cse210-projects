@@ -29,6 +29,38 @@ public class GoalManager {
             _goals.Add(goal);
         }
 // RecordEvent - Asks the user which goal they have done and then records the event by calling the RecordEvent method on that goal.
+    public void RecordEvent(int goalNumber)
+{
+    int goalIndex = goalNumber - 1;
+
+    if (goalIndex >= 0 && goalIndex < _goals.Count)
+    {
+        Goal goal = _goals[goalIndex];
+
+        // Check if it's a SimpleGoal
+        if (goal is SimpleGoal simpleGoal)
+        {
+            simpleGoal.SetComplete(true);
+            _score += simpleGoal.GetPoints();
+            Console.WriteLine($"Marked '{simpleGoal.GetShortName()}' as complete! +{simpleGoal.GetPoints()} points.");
+        }
+        else if (goal is EternalGoal eternalGoal)
+        {
+            _score += eternalGoal.GetPoints();
+            Console.WriteLine($"{eternalGoal.GetShortName()} was marked done.  +{eternalGoal.GetPoints()} points.");
+        } else
+        {
+            Console.WriteLine("That goal type doesn't get marked complete like a Simple Goal.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Invalid goal number.");
+    }
+    
+}
+
+
 // SaveGoals - Saves the list of goals to a file.
 
     public void SaveGoals(string filePath)
