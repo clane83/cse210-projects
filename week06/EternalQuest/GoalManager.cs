@@ -48,7 +48,14 @@ public class GoalManager {
         {
             _score += eternalGoal.GetPoints();
             Console.WriteLine($"{eternalGoal.GetShortName()} was marked done.  +{eternalGoal.GetPoints()} points.");
-        } else
+        } 
+        else if (goal is ChecklistGoal checklistGoal)
+        {
+            _score += checklistGoal.GetPoints();
+            checklistGoal.SetAmountCompleted(1);
+            Console.WriteLine($"{checklistGoal.GetShortName()} was updated.  +{checklistGoal.GetPoints()} points.");
+            
+        }else
         {
             Console.WriteLine("That goal type doesn't get marked complete like a Simple Goal.");
         }

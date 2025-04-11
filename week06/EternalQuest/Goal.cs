@@ -19,7 +19,7 @@ public abstract class Goal {
         return _description;
     }
 
-    public int GetPoints() {
+    public  int GetPoints() {
         return _points;
     }
 

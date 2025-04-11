@@ -30,6 +30,7 @@ public class ChecklistGoal : Goal {
         
     }
 
+
     public override string RecordEvent() {
         if (_isComplete){
             return "[X]";

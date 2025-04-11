@@ -14,7 +14,7 @@ public class EternalGoal : Goal{
     }
 
     public override string GetDetailsString() {
-        return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {base.GetPoints()}";
+        return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {base.GetPoints()}/  {IsComplete()}";
     }
 
     public override string GetStringRepresentation() {
