@@ -76,12 +76,13 @@ public class GoalManager {
                 string name = parts[1];
                 string desc = parts[2];
                 string points = parts[3];
-                string target = parts[4];
-                string bonus = parts[5];
-                string completed = parts[6]; // figure out error at this point
+                string completed = parts[4];
+                string target = parts[5];
+                string bonus = parts[6]; // figure out error at this point
                 ChecklistGoal cg = new ChecklistGoal(name, desc, completed, target, bonus, points);
                 _goals.Add(cg);
             }
+
             else if (goalType == "EternalGoal")
             {
                 string name = parts[1];

@@ -1,4 +1,5 @@
 0
-ChecklistGoal|lkjalkj|aldkjf oiua fjakd jflakdjf ladf lkj |50|0 out of 7 completed|900
-EternalGoal|lakdjf|lakdj faiduf alk dj|600|False
-SimpleGoal|lakdjf|lakdjf lakjd |50
+SimpleGoal|Finish the assignment|Finish the assignment for week 6|100|false
+ChecklistGoal|Read my scriptures|Read the book of mormon each day for a week|100|0|7|500
+EternalGoal|study general conference|watch and study the general conference talks|100|False
+SimpleGoal|get enough sleep|get 8 hours of sleep|50|false
