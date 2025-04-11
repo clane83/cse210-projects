@@ -51,6 +51,7 @@ public class ChecklistGoal : Goal {
         }
     }
 
+//goal format for file
     public override string GetStringRepresentation() {
         return $"ChecklistGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{_amountCompleted}|{_target}|{_bonus}";
     }

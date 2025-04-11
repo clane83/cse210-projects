@@ -26,6 +26,7 @@ public class SimpleGoal : Goal {
         
     }
 
+//goal format for file
     public override string GetStringRepresentation() {
         return $"SimpleGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{_isComplete}";
     }

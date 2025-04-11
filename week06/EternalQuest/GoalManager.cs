@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 public class GoalManager {
-    private int _score;
+    private int _score = 0;
     private List<Goal> _goals = new List<Goal>();
     
 
@@ -21,11 +21,10 @@ public class GoalManager {
 
 
 // DisplayPlayerInfo - Displays the players current score.
-    public int GetScore(){
-        return _score;
+    public string GetScore(){
+        return $"\nYour score: {_score}\n";
     }
-// ListGoalNames - Lists the names of each of the goals.
-// ListGoalDetails - Lists the details of each goal (including the checkbox of whether it is complete).
+
 // CreateGoal - Asks the user for the information about a new goal. Then, creates the goal and adds it to the list.
     public void AddGoal(Goal goal)
         {
@@ -40,18 +39,20 @@ public class GoalManager {
     {
         Goal goal = _goals[goalIndex];
 
-        // Check if it's a SimpleGoal
+    // Check if it's a SimpleGoal
         if (goal is SimpleGoal simpleGoal)
         {
             simpleGoal.SetComplete(true);
             _score += simpleGoal.GetPoints();
             Console.WriteLine($"Marked '{simpleGoal.GetShortName()}' as complete! +{simpleGoal.GetPoints()} points.");
         }
+    // Check if it's a Eternal Goal
         else if (goal is EternalGoal eternalGoal)
         {
             _score += eternalGoal.GetPoints();
             Console.WriteLine($"{eternalGoal.GetShortName()} was marked done.  +{eternalGoal.GetPoints()} points.");
         } 
+    // Check if it's a ChecklistGoal
         else if (goal is ChecklistGoal checklistGoal)
         {
             _score += checklistGoal.GetPoints();
@@ -148,7 +149,7 @@ public class GoalManager {
     }
 
 
-
+//List the goals to the console
     public string GetGoals()
 {
     if (_goals.Count == 0)

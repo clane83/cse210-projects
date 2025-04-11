@@ -17,6 +17,7 @@ public class EternalGoal : Goal{
         return $"{RecordEvent()} {base.GetShortName()} / {base.GetDescription()} / {base.GetPoints()}/  {IsComplete()}";
     }
 
+//goal format for file
     public override string GetStringRepresentation() {
         return $"EternalGoal|{GetShortName()}|{GetDescription()}|{GetPoints()}|{IsComplete()}";
     }
