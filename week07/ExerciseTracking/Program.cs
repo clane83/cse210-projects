@@ -8,6 +8,7 @@ class Program
       
         double distance = 0.0;
         int distanceType = 0;
+        int minutes = 0;
        
         
 
@@ -17,12 +18,21 @@ class Program
 
 
         Console.WriteLine(exerciseManager.AskUserDistance());
-        distance = int.Parse(Console.ReadLine());
+        distance = double.Parse(Console.ReadLine());
 
         Console.WriteLine(exerciseManager.AskUserMeasurement());
         distanceType = int.Parse(Console.ReadLine());
         
+        Console.WriteLine(exerciseManager.AskUserTime());
+        minutes = int.Parse(Console.ReadLine());
 
+        if (exercise == 1)
+        {
+            Running running = new Running(distance, minutes, distanceType);
+            Console.WriteLine(running.GetDetailsString());
+        } else {
+            Console.WriteLine("Still working on");
+        }
 
     }
 

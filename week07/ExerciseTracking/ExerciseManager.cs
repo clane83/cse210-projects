@@ -18,4 +18,8 @@ public class ExerciseManager{
         return "Choose measurement type:\n  1. Metric - meters\n  2. Imperial - miles\nEnter the number:";
     }
 
+    public string AskUserTime(){
+        return "How long did you exercise?";
+    }
+
 }
