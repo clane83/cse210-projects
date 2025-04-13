@@ -10,26 +10,31 @@ class Program
         int distanceType = 0;
         int minutes = 0;
        
-        
-
         ExerciseManager exerciseManager = new ExerciseManager();
-        Console.WriteLine(exerciseManager.AskUserForExercise());
-        exercise = int.Parse(Console.ReadLine());
-        
 
-        if (exercise < 3){
-            Console.WriteLine(exerciseManager.AskUserMeasurement());
-            distanceType = int.Parse(Console.ReadLine());
-            Console.WriteLine(exerciseManager.AskUserDistance());
-            distance = double.Parse(Console.ReadLine());
-        } else if (exercise > 3){
-            Console.WriteLine("Please choose a valid exercise");
-        } else {
-            Console.WriteLine(exerciseManager.AskUserMeasurement());
-            distanceType = int.Parse(Console.ReadLine());
-            Console.WriteLine(exerciseManager.AskUserLaps());
-            distance = double.Parse(Console.ReadLine());
+        bool chooseExercise = true;
+        while (chooseExercise){
+            
+            Console.WriteLine(exerciseManager.AskUserForExercise());
+            exercise = int.Parse(Console.ReadLine());
+            
+            if (exercise < 3){
+                Console.WriteLine(exerciseManager.AskUserMeasurement());
+                distanceType = int.Parse(Console.ReadLine());
+                Console.WriteLine(exerciseManager.AskUserDistance());
+                distance = double.Parse(Console.ReadLine());
+                chooseExercise = false;
+            } else if (exercise > 3){
+                Console.WriteLine("Please choose a valid exercise");
+            } else {
+                Console.WriteLine(exerciseManager.AskUserMeasurement());
+                distanceType = int.Parse(Console.ReadLine());
+                Console.WriteLine(exerciseManager.AskUserLaps());
+                distance = double.Parse(Console.ReadLine());
+                chooseExercise = false;
+            }
         }
+        
 
 
         
