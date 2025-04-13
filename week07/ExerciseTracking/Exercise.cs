@@ -53,13 +53,22 @@ public abstract class Exercise{
         }
     }
 
-    public abstract double GetSpeed();
+    public virtual double GetSpeed(){
     // Speed (mph or kph) = (distance / minutes) * 60
     // Speed = 60 / pace
+       
+        return (_distance / _minutes) * 60;
+    
+    }
 
-    public abstract double GetPace();
+    public virtual double GetPace(){
     // Pace (min per mile or min per km)= minutes / distance
     // Pace = 60 / speed
+    double pace = 60 / GetSpeed();
+    return pace;
+
+    }
+    
 
     public abstract string GetDetailsString();
 //03 Nov 2022 Running (30 min)- Distance 3.0 miles, Speed 6.0 mph, Pace: 10.0 min per mile

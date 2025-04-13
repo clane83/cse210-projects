@@ -15,13 +15,24 @@ class Program
         ExerciseManager exerciseManager = new ExerciseManager();
         Console.WriteLine(exerciseManager.AskUserForExercise());
         exercise = int.Parse(Console.ReadLine());
+        
+
+        if (exercise < 3){
+            Console.WriteLine(exerciseManager.AskUserMeasurement());
+            distanceType = int.Parse(Console.ReadLine());
+            Console.WriteLine(exerciseManager.AskUserDistance());
+            distance = double.Parse(Console.ReadLine());
+        } else if (exercise > 3){
+            Console.WriteLine("Please choose a valid exercise");
+        } else {
+            Console.WriteLine(exerciseManager.AskUserMeasurement());
+            distanceType = int.Parse(Console.ReadLine());
+            Console.WriteLine(exerciseManager.AskUserLaps());
+            distance = double.Parse(Console.ReadLine());
+        }
 
 
-        Console.WriteLine(exerciseManager.AskUserDistance());
-        distance = double.Parse(Console.ReadLine());
-
-        Console.WriteLine(exerciseManager.AskUserMeasurement());
-        distanceType = int.Parse(Console.ReadLine());
+        
         
         Console.WriteLine(exerciseManager.AskUserTime());
         minutes = int.Parse(Console.ReadLine());
@@ -30,6 +41,14 @@ class Program
         {
             Running running = new Running(distance, minutes, distanceType);
             Console.WriteLine(running.GetDetailsString());
+        } else if (exercise == 2)
+        {
+            Cycling cycling = new Cycling(distance, minutes, distanceType);
+            System.Console.WriteLine(cycling.GetDetailsString());
+        } else if (exercise == 3)
+        {
+            Swimming swimming = new Swimming(distance, minutes, distanceType);
+            System.Console.WriteLine(swimming.GetDetailsString());
         } else {
             Console.WriteLine("Still working on");
         }

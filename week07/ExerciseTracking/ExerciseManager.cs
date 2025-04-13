@@ -22,4 +22,8 @@ public class ExerciseManager{
         return "How long did you exercise?";
     }
 
+    public string AskUserLaps(){
+        return "How many laps did you complete?";
+    }
+
 }
